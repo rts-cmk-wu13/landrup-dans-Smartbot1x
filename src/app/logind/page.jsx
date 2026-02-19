@@ -21,7 +21,7 @@ export default function loginpage() {
       </section>
       <hr />
 
-      <h1 className="text-left ml-6 mb-4">log ind</h1>
+      <h1 className="text-left ml-6 mb-4 text-secondary">log ind</h1>
       <div className="form__wrapper flex flex-col items-center space-y-2 ">
         <LoginForm />
       </div>
