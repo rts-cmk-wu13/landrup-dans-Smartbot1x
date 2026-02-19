@@ -3,6 +3,7 @@ import { z } from "zod"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { loginSchema } from "@/lib/schemas"
+import { da } from "zod/v4/locales"
 
 export async function loginUser(prevState, formData) {
 
@@ -45,7 +46,9 @@ export async function loginUser(prevState, formData) {
     console.log(data)
 
     cookieStore.set("accessToken", data.token)
+    cookieStore.set("username", data.username)
     console.log(cookieStore.get("accessToken"))
+
 
 
     return redirect("/aktiviteter")

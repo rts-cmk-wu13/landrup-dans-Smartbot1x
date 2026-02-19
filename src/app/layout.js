@@ -2,6 +2,9 @@
 import "./globals.css";
 
 
+export const viewport = {
+  themeColor: 'red',
+}
 
 export const metadata = {
 
@@ -12,7 +15,7 @@ export const metadata = {
   },
   description:
     "Velkommen til Landrup Dans, din destination for dans og bevægelse. ",
-  themeColor: "#e9e9e9",
+
 
 };
 
