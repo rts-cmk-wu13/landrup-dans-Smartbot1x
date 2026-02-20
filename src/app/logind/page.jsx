@@ -1,6 +1,7 @@
 import Image from "next/image";
 import LoginForm from "@/components/loginForm/LoginForm";
 import Link from "next/link";
+/* import { Suspense } from "react"; */
 
 export const metadata = {
   title: "Log ind",
@@ -23,7 +24,9 @@ export default function loginpage() {
 
       <h1 className="text-left ml-6 mb-4 text-secondary">log ind</h1>
       <div className="form__wrapper flex flex-col items-center space-y-2 ">
+        {/*    <Suspense fallback={<LoadingSpinner />}> */}
         <LoginForm />
+        {/*  </Suspense> */}
       </div>
       <article>
         <p className="text-center w-88.5 h-6.25 mt-8 text-secondary">

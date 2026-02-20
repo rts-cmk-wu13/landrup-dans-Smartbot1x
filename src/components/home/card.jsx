@@ -33,19 +33,20 @@ export default function CardComponents() {
     <>
       <h1>Vores holdtyper</h1>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 text-secondary">
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
         {holdtyper.map((hold) => (
-          <article key={hold.title} className="space-y-5 text-center">
+          <article key={hold.title} className="flex flex-col gap-4 w-full">
             <h2 className="text-left">{hold.title}</h2>
-            <Image
-              src={hold.img}
-              alt={hold.title}
-              className="card-img"
-              width={356}
-              height={216}
-            />
-
-            <p className="h-33 w-89 text-center">{hold.description}</p>
+            <div className="flex justify-center w-full">
+              <Image
+                src={hold.img}
+                alt={hold.title}
+                className="w-full max-w-[356px] h-[216px] object-cover"
+                width={356}
+                height={216}
+              />
+            </div>
+            <p className="text-secondary text-center">{hold.description}</p>
           </article>
         ))}
       </section>
