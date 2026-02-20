@@ -31,7 +31,7 @@ export default function Newsletter() {
         <button
           type="submit"
           disabled={isPending}
-          className="flex justify-center items-center gap-2 w-20.75 px-[10px] py-4 rounded-[10px] bg-secondary text-background font-medium shadow-(--box-shadow) hover:bg-white disabled:opacity-50 cursor-pointer"
+          className="flex justify-center items-center gap-2 w-20 px-[10px] py-4 rounded-[10px] bg-secondary text-background font-medium shadow-(--box-shadow) hover:bg-white disabled:opacity-50 cursor-pointer"
         >
           {isPending ? "Sender..." : "Tilmeld"}
         </button>
