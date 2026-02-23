@@ -20,39 +20,48 @@ export default function TestimonialSlider() {
   const t = testimonials[current];
 
   return (
-    <div
-      aria-label="Testimonials"
-      className="flex flex-col items-center gap-4 mt-10"
-    >
-      <article className="shadow-(--box-shadow)">
-        <p className="italic mb-4">{t.content}</p>
-        <footer className="mt-2">
-          <p className="font-bold">{t.name}</p>
-          <p className="text-sm text-background/70">{t.occupation}</p>
-        </footer>
-      </article>
-      <div className="button-group flex gap-4">
-        <button
-          onClick={() =>
-            setCurrent(
-              (prev) => (prev - 1 + testimonials.length) % testimonials.length,
-            )
-          }
-          className="hover:bg-white"
-          aria-label="previous testimonial"
-        >
-          <FaChevronLeft />
-        </button>
+    <>
+      <div
+        aria-label="Testimonials"
+        className="testi_container flex flex-col items-center gap-4 mt-20 mb-7"
+      >
+        {" "}
+        <h1 className="  text-center line-clamp-2 ">
+          Det siger vores kunder om os
+        </h1>
+        <article className="shadow-(--box-shadow)">
+          <p className="italic mb-4 text-secondary">{t.content}</p>
+          <div className="mt-2">
+            <p className="font-bold text-secondary">{t.name}</p>
+            <p className="text-sm text-secondary">{t.occupation}</p>
+          </div>
+        </article>
+        <div className="button-group flex gap-4">
+          <button
+            onClick={() =>
+              setCurrent(
+                (prev) =>
+                  (prev - 1 + testimonials.length) % testimonials.length,
+              )
+            }
+            aria-label="previous testimonial"
+            className="flex items-center justify-center bg-[#183153] border-2 border-white rounded-full w-12 h-12"
+          >
+            <FaChevronLeft className="text-white w-6 h-6" />
+          </button>
 
-        <button
-          onClick={() => setCurrent((prev) => (prev + 1) % testimonials.length)}
-          className="hover:bg-white"
-          aria-label="next testimonial"
-        >
-          <FaChevronRight />
-        </button>
+          <button
+            onClick={() =>
+              setCurrent((prev) => (prev + 1) % testimonials.length)
+            }
+            aria-label="next testimonial"
+            className="flex items-center justify-center bg-[#183153] border-2 border-white rounded-full w-12 h-12"
+          >
+            <FaChevronRight className="text-white w-6 h-6" />
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 {

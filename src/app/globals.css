@@ -101,3 +101,13 @@ hr {
 .hero__btn:hover {
   background: #ffffff;
 }
+.testi_container {
+  /*  background: url(/img/reviews.png) lightgray 0% 0% / 110.86657047271729px
+    110.86657047271729px repeat; */
+}
+.overlay_content {
+  width: 360px;
+  height: 96px;
+  border-radius: 0 39px;
+  background: rgba(0, 49, 71, 0.75);
+}

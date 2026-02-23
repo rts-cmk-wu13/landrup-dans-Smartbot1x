@@ -1,5 +1,9 @@
 
+import NavbarFooter from "@/components/navbar";
 import "./globals.css";
+import { Suspense } from "react";
+import LoadingSpinner from "./loading";
+
 
 
 export const viewport = {
@@ -24,10 +28,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-background">
+      <body className="bg-background min-h-screen">
+        <Suspense fallback={<LoadingSpinner />}>
+          <main className="pb-24">
+            {children}
+          </main>
+        </Suspense>
+        <NavbarFooter />
 
-        {children}
       </body>
-    </html>
+    </html >
   );
 }

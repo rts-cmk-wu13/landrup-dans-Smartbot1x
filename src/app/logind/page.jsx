@@ -1,6 +1,7 @@
 import Image from "next/image";
 import LoginForm from "@/components/loginForm/LoginForm";
 import Link from "next/link";
+
 /* import { Suspense } from "react"; */
 
 export const metadata = {

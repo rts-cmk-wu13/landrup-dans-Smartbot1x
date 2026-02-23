@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
 export function proxy(request) {
-    return NextResponse.redirect(new URL('/', request.url))
+    if (!request.cookies.has("accessToken"))
+        return NextResponse.redirect(new URL('/unauthorized', request.url))
 }
 
 // Alternatively, you can use a default export:
