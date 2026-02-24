@@ -1,4 +1,7 @@
 "use server";
+
+import { cookies } from "next/headers";
+
 const API_BASE_URL = "http://localhost:4000/api/v1";
 
 /**
@@ -93,7 +96,7 @@ export async function getActivityById(id) {
 }
 
 /**
- * Create new activity
+ * Create new activity (JSON). Use createActivityWithFormData for multipart (file upload).
  */
 export async function createActivity(activityData) {
     try {
@@ -124,6 +127,49 @@ export async function createActivity(activityData) {
         return {
             success: false,
             message: "something went wrong on the server, try again later",
+        };
+    }
+}
+
+/**
+ * Create activity via multipart/form-data (Landrup API: name, description, weekday, time, maxParticipants, minAge, maxAge, file).
+
+ */
+export async function createActivityWithFormData(formData) {
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("accessToken")?.value;
+        if (!token) {
+            return { success: false, error: "Ikke logget ind." };
+        }
+
+        const res = await fetch(`${API_BASE_URL}/activities`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+        });
+
+        if (!res.ok) {
+            const text = await res.text();
+            return {
+                success: false,
+                error: text || res.statusText || "Kunne ikke oprette hold",
+            };
+        }
+
+        const contentType = res.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+            const data = await res.json();
+            return { success: true, data };
+        }
+        return { success: true, data: null };
+    } catch (error) {
+        console.log("createActivityWithFormData error:", error);
+        return {
+            success: false,
+            error: "Noget gik galt. Prøv igen senere.",
         };
     }
 }
@@ -199,12 +245,21 @@ export async function deleteActivity(id) {
  */
 export async function signUpForActivity(activityId, userId) {
     try {
-        const res = await fetch(`${API_BASE_URL}/activities/${activityId}/signup`, {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("accessToken")?.value;
+
+        if (!token) {
+            return {
+                success: false,
+                message: "Du skal være logget ind for at tilmelde dig.",
+            };
+        }
+
+        const res = await fetch(`${API_BASE_URL}/users/${userId}/activities/${activityId}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ userId }),
         });
 
         if (!res.ok) {
@@ -234,4 +289,54 @@ export async function signUpForActivity(activityId, userId) {
 }
 
 
+function decodeJwtPayload(token) {
+    try {
+        const [, payloadBase64] = token.split(".");
+        if (!payloadBase64) return null;
+        const payloadJson = Buffer.from(payloadBase64, "base64").toString("utf8");
+        return JSON.parse(payloadJson);
+    } catch {
+        return null;
+    }
+}
 
+/**
+  Get current user from API (GET /users/:id). Returns null if not logged in or API fails.
+  
+ */
+export async function getCurrentUser() {
+    try {
+        const cookieStore = await cookies();
+        const token = cookieStore.get("accessToken")?.value;
+        if (!token) return null;
+
+        const payload = decodeJwtPayload(token);
+        const userId = payload?.data?.id;
+        if (userId == null) return null;
+
+        const res = await fetch(`${API_BASE_URL}/users/${userId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+            cache: "no-store",
+        });
+        if (!res.ok) return null;
+
+        const data = await res.json();
+        const fullName = [data.firstname, data.lastname]
+            .filter(Boolean)
+            .join(" ") || data.username || "Bruger";
+
+        const role =
+            data.role === "instructor"
+                ? "instructor"
+                : "member";
+
+        return {
+            id: data.id,
+            name: fullName,
+            role,
+        };
+    } catch (error) {
+        console.log("getCurrentUser error:", error);
+        return null;
+    }
+}

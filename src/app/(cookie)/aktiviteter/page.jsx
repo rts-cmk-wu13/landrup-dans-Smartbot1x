@@ -6,7 +6,7 @@ export const metadata = {
 };
 
 export default async function userProfile() {
-  // checking access for the page incase proxy doesnt work
+  // checking access for the page incase proxy  gets bypassed
   await checkAccess();
   return (
     <>
