@@ -25,34 +25,25 @@ export default function CreateClassForm() {
   return (
     <form action={formAction} className="flex flex-col gap-4 max-w-[360px]">
       <div>
-        <label htmlFor="name" className="block text-secondary text-sm mb-1">
-          Holdnavn
-        </label>
         <input
           id="name"
           name="name"
           type="text"
-          required
-          placeholder="fx. Tango for begyndere"
+          placeholder="Holdnavn"
           defaultValue={state.values?.name}
           className={inputClass}
         />
         {state.errors?.name && (
-          <p className="mt-1 text-sm text-rose-400">
-            {state.errors.name[0]}
-          </p>
+          <p className="mt-1 text-sm text-rose-400">{state.errors.name[0]}</p>
         )}
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-secondary text-sm mb-1">
-          Beskrivelse
-        </label>
         <textarea
           id="description"
           name="description"
           rows={3}
-          placeholder="Kort beskrivelse af holdet"
+          placeholder="Beskrivelse"
           defaultValue={state.values?.description}
           className={inputClass}
         />
@@ -64,13 +55,9 @@ export default function CreateClassForm() {
       </div>
 
       <div>
-        <label htmlFor="weekday" className="block text-secondary text-sm mb-1">
-          Ugedag
-        </label>
         <select
           id="weekday"
           name="weekday"
-          required
           className={inputClass}
           defaultValue={state.values?.weekday || ""}
         >
@@ -89,38 +76,28 @@ export default function CreateClassForm() {
       </div>
 
       <div>
-        <label htmlFor="time" className="block text-secondary text-sm mb-1">
-          Tidspunkt
-        </label>
         <input
           id="time"
           name="time"
           type="text"
-          required
-          placeholder="fx. 15:45"
+          placeholder="Tidspunkt"
           defaultValue={state.values?.time}
           className={inputClass}
         />
         {state.errors?.time && (
-          <p className="mt-1 text-sm text-rose-400">
-            {state.errors.time[0]}
-          </p>
+          <p className="mt-1 text-sm text-rose-400">{state.errors.time[0]}</p>
         )}
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="minAge" className="block text-secondary text-sm mb-1">
-            Alder (min.)
-          </label>
           <input
             id="minAge"
             name="minAge"
             type="number"
             min={0}
             max={100}
-            required
-            placeholder="0"
+            placeholder="alder(min.)"
             defaultValue={state.values?.minAge}
             className={inputClass}
           />
@@ -131,17 +108,13 @@ export default function CreateClassForm() {
           )}
         </div>
         <div>
-          <label htmlFor="maxAge" className="block text-secondary text-sm mb-1">
-            Alder (max.)
-          </label>
           <input
             id="maxAge"
             name="maxAge"
             type="number"
             min={0}
             max={100}
-            required
-            placeholder="100"
+            placeholder=" Alder (max.)"
             defaultValue={state.values?.maxAge}
             className={inputClass}
           />
@@ -155,9 +128,6 @@ export default function CreateClassForm() {
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="instructor" className="block text-secondary text-sm mb-1">
-            Instruktør
-          </label>
           <select
             id="instructor"
             name="instructor"
@@ -165,21 +135,17 @@ export default function CreateClassForm() {
             defaultValue={state.values?.instructor || ""}
           >
             <option value="">Vælg instruktør</option>
-            <option value="self">Dig (instruktør)</option>
+            <option value="self">medlem</option>
           </select>
         </div>
 
         <div>
-          <label htmlFor="maxParticipants" className="block text-secondary text-sm mb-1">
-            Deltagere (max.)
-          </label>
           <input
             id="maxParticipants"
             name="maxParticipants"
             type="number"
             min={1}
-            required
-            placeholder="fx. 10"
+            placeholder="  Deltagere (max.)"
             defaultValue={state.values?.maxParticipants}
             className={inputClass}
           />
@@ -207,7 +173,7 @@ export default function CreateClassForm() {
           >
             Gennemse...
           </label>
-          <span className="text-secondary/80 text-sm">Valgfrit</span>
+          <span className="text-secondary/80 text-sm">Ingen fil valgt</span>
         </div>
       </div>
 
