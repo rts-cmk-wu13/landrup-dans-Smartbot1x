@@ -45,9 +45,5 @@ next-env.d.ts
 
 
 
-lib/
-src/app/\(auth\)/
-src/components/loginForm
-*.css
 
 

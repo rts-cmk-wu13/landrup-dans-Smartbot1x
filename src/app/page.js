@@ -1,30 +1,23 @@
-import Image from 'next/image';
-import logo from '../assets/logo.png';
-import logotxt from '../assets/logo-text.png';
-import Link from 'next/link';
+import CardComponents from '@/components/home/card'
+import Hero from '@/components/home/Hero'
+import Newsletter from '@/components/home/newsteller'
+import TestimonialSlider from '@/components/home/TestimonialSlider'
+import ContactLanding from '@/components/contactform'
+
+
 
 
 export default function Home() {
   return (
     <>
-      <section className="hero__container">
-        <div className="hero__content">
-          <Image src={logo} alt="Logo" />
-          <Image src={logotxt} alt="Logo Text" />
-          <hr />
-        </div>
 
-      </section>
-      <Link
-        type='button'
-        href="/logind"
-        className="btn btn-primary disabled:"
-      >
-        Login
-      </Link>
-      <p className="text-center text-sm mt-4">
-        hey test </p>
+      <Hero />
+      < CardComponents />
+      <Newsletter />
+      <TestimonialSlider />
+      <ContactLanding />
+
 
     </>
-  );
+  )
 }

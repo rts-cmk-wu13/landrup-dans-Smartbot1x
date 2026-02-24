@@ -1,11 +1,14 @@
+import CreateUserForm from "@/components/signupform/CreateUserForm";
+import AuthLayout from "@/components/auth/AuthLayout";
+
 export const metadata = {
   title: "Opret bruger",
   description: "Opret en ny bruger på Landrup Dans",
 };
 export default function register() {
   return (
-    <>
-      <h1>Opret bruger</h1>
-    </>
+    <AuthLayout title="Opret bruger">
+      <CreateUserForm />
+    </AuthLayout>
   );
 }

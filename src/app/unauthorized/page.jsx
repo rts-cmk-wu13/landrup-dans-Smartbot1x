@@ -1,38 +1,36 @@
 import Link from "next/link";
 
-export default function unauthorized() {
+export default function Unauthorized() {
   return (
-    <>
-      <section className="flex items-center p-16 bg-secondary h-screen">
-        <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
-          <div className="max-w-md text-center">
-            <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-400">
-              <span className="sr-only">Error</span>401
-            </h2>
-            <p className="text-2xl font-semibold md:text-3xl">
-              this page is not for you. you dont have access to this page
-            </p>
-            <p className="mt-4 mb-8 dark:text-gray-600">
-              But dont worry, u can go back look homepage or try to log in if
-              you have an account or create one
-            </p>
-            <div className="flex space-x-3.5">
-              <Link
-                href="/"
-                className="px-2 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50"
-              >
-                Back to homepage
-              </Link>
-              <Link
-                href="/logind"
-                className="px-2 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50"
-              >
-                try to log in
-              </Link>
-            </div>
+    <section className="flex items-center justify-center min-h-screen p-4 bg-background text-secondary">
+      <div className="w-full max-w-md mx-auto my-8 flex flex-col items-center justify-center px-4 sm:px-6">
+        <div className="text-center">
+          <h2 className="mb-6 font-extrabold text-6xl sm:text-8xl md:text-9xl">
+            <span className="sr-only">Error</span>401
+          </h2>
+          <p className="text-xl sm:text-2xl md:text-3xl font-semibold">
+            This page is not for you. You don't have access to this page.
+          </p>
+          <p className="mt-4 mb-8 text-base sm:text-lg">
+            But don't worry, you can go back to the homepage, try to log in if
+            you have an account, or create one.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/"
+              className="px-4 py-2 font-semibold rounded bg-secondary text-background"
+            >
+              Back to homepage
+            </Link>
+            <Link
+              href="/logind"
+              className="px-4 py-2 font-semibold rounded bg-secondary text-background"
+            >
+              Try to log in
+            </Link>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
