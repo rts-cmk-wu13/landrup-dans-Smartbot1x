@@ -78,7 +78,7 @@ export default function ActivityDetail({ activity, isInstructor = false }) {
             aria-hidden="true"
           >
             <div
-              className="bg-blue-600 h-2 rounded-full transition-all"
+              className="bg-secondary h-2 rounded-full transition-all"
               style={{
                 width:
                   maxParticipants > 0
@@ -116,7 +116,7 @@ export default function ActivityDetail({ activity, isInstructor = false }) {
                       className="flex items-center justify-between bg-white/10 rounded-lg px-3 py-2"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white/20">
+                        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-red-900/20">
                           <svg
                             className="w-4 h-4"
                             fill="none"

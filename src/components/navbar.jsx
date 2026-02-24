@@ -2,8 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Home, List } from "lucide-react";
+import { Home, List, LogOut } from "lucide-react";
 import { FaUser } from "react-icons/fa";
+export const dynamic = "force-dynamic";
+
+import LogoutAction, { isUserLoggedIn } from "./LogoutAction";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
@@ -13,6 +17,13 @@ const navItems = [
 
 export default function NavbarFooter() {
   const pathname = usePathname();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      setLoggedIn(await isUserLoggedIn());
+    })();
+  }, []);
 
   return (
     <footer className="fixed mt-15 bottom-0 w-full">
@@ -56,6 +67,22 @@ export default function NavbarFooter() {
               </Link>
             );
           })}
+          {loggedIn && (
+            <form action={LogoutAction}>
+              <button
+                type="submit"
+                className="flex flex-col items-center gap-1.5 px-4 py-2 rounded-2xl text-[#6F6F6F] hover:text-black transition-all duration-300 ease-out relative"
+                title="Log ud"
+              >
+                <div className="relative flex items-center justify-center w-10 h-10">
+                  <LogOut size={24} strokeWidth={1.5} />
+                </div>
+                <span className="text-[11px] font-medium tracking-tight">
+                  Log ud
+                </span>
+              </button>
+            </form>
+          )}
         </nav>
       </div>
     </footer>

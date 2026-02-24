@@ -1,6 +1,7 @@
 "use client";
 import { useActionState } from "react";
 import { contactForm } from "./action";
+import Image from "next/image";
 
 const initialState = {
   success: false,
@@ -62,6 +63,20 @@ export default function ContactLanding() {
       >
         {isPending ? "Sender..." : "Send besked"}
       </button>
+      <section className="flex-center text-secondary space-y-2.5">
+        <Image
+          src="/img/logo.png"
+          alt="Contact us"
+          width={64}
+          height={64}
+          className="mx-auto mt-10"
+        />
+        <p>Landrup Dans</p>
+        <address className="text-center">
+          Pulsen 8 . 4000 Roskilde <br />
+          Tlf. 3540 4550
+        </address>
+      </section>
     </form>
   );
 }

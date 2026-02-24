@@ -35,7 +35,7 @@ export default function SignUpButton({ activityId }) {
         type="button"
         onClick={handleSignUp}
         disabled={isPending}
-        className="bg-background w-60 ml-20 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold py-3 px-8 rounded-[10px] shadow-lg transition-colors duration-200"
+        className="bg-background w-60 ml-20  disabled:bg-secondary/30 text-white font-bold py-3 px-8 rounded-[10px] shadow-lg transition-colors duration-200"
       >
         {isPending ? "Tilmelder..." : "Tilmeld"}
       </button>

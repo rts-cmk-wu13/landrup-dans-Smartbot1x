@@ -42,3 +42,37 @@ export const ContactFormSchema = z.object({
     email: z.string().min(1, "Indtast en email-adresse."),
     message: z.string().min(10, "Beskeden skal være mindst 10 tegn."),
 });
+
+export const createActivitySchema = z.object({
+    name: z.string().min(1, "Indtast holdnavn."),
+    description: z.string().min(1, "Indtast en beskrivelse."),
+    weekday: z.string().min(1, "Vælg en ugedag."),
+    time: z
+        .string()
+        .min(1, "Indtast et tidspunkt.")
+        .regex(
+            /^([01]\d|2[0-3]):[0-5]\d$/,
+            "Tid skal være i formatet HH:MM.",
+        ),
+    minAge: z
+        .string()
+        .trim()
+        .min(1, "Indtast min. alder.")
+        .refine((v) => /^\d+$/.test(v), "Alder skal være et tal."),
+    maxAge: z
+        .string()
+        .trim()
+        .min(1, "Indtast max. alder.")
+        .refine((v) => /^\d+$/.test(v), "Alder skal være et tal."),
+    maxParticipants: z
+        .string()
+        .trim()
+        .min(1, "Indtast antal deltagere.")
+        .refine((v) => /^\d+$/.test(v), "Deltagere skal være et tal."),
+}).refine(
+    (data) => Number(data.minAge) <= Number(data.maxAge),
+    {
+        message: "Min. alder skal være mindre end eller lig max. alder.",
+        path: ["maxAge"],
+    },
+);
