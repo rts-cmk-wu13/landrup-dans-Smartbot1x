@@ -5,5 +5,5 @@ import { redirect } from "next/navigation";
 
 export async function checkAccess() {
     const cookieStore = await cookies();
-    if (!cookieStore.has("accessToken")) return redirect("/unauthorized");
+    if (!cookieStore.has("Landrup-accessToken")) return redirect("/unauthorized");
 }

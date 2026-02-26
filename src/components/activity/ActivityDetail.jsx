@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { notFound } from "next/navigation";
 import SignUpButton from "./signUpAction";
 import { ArrowLeft } from "lucide-react";
@@ -39,14 +38,14 @@ export default function ActivityDetail({ activity, isInstructor = false }) {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 max-w-2xl">
+      <section className="container mx-auto max-w-2xl">
         <figure className="relative mt-6 rounded-lg overflow-hidden shadow-lg">
           <img
             src={activity.asset?.url || "/placeholder.jpg"}
             alt={activity.name}
             className="w-full h-80 object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          <div className="absolute inset-0 " />
 
           <figcaption className="sr-only">
             Billede af aktiviteten {activity.name}
@@ -61,7 +60,13 @@ export default function ActivityDetail({ activity, isInstructor = false }) {
           <h2 className="text-2xl font-bold mb-1">{activity.name}</h2>
           <p className=" font-medium mb-4">{ageRange}</p>
 
-          <p className=" leading-relaxed mb-6">{activity.description}</p>
+          <p className=" leading-relaxed mb-6">
+            {activity.description}, consectetur adipiscing elit. Eget elementum
+            lorem nulla vitae felis auctor pretium suspendisse et. Condimentum
+            fringilla odio vitae interdum adipiscing odio volutpat. Faucibus
+            gravida quis nisi, purus morbi leo nulla a. Mattis tincidunt
+            phasellus enim, egestas non ultrices.
+          </p>
         </article>
         {/*     extra info om deltagere og max deltagere */}
         <section

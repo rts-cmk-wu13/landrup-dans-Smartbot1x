@@ -240,7 +240,7 @@ export default async function ProfilePage() {
 
 **Vigtigt:**
 
-- Centraliseret adgangskontrol: Logikken er samlet ét sted (checkAccess()), så den kan genbruges på flere sider.
+- Centraliseret adgangskontrol: Logikken er samlet et sted (checkAccess()), så den kan genbruges på flere sider.
 
 - Server-side sikkerhed: Tjekket sker på serveren, hvilket forhindrer, at uautoriserede brugere kan manipulere klienten for at få adgang.
 

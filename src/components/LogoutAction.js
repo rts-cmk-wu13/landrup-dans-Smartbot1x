@@ -8,12 +8,12 @@ import { redirect } from "next/navigation";
 
 export default async function LogoutAction() {
     const cookieStore = await cookies();
-    cookieStore.delete("accessToken");
-    cookieStore.delete("username");
+    cookieStore.delete("Landrup-accessToken");
+    cookieStore.delete("userId");
     return redirect("/");
 }
 
 export async function isUserLoggedIn() {
     const cookieStore = await cookies();
-    return cookieStore.has("accessToken");
+    return cookieStore.has("Landrup-accessToken");
 }

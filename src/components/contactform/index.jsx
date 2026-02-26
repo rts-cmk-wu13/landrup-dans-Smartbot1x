@@ -73,7 +73,8 @@ export default function ContactLanding() {
         />
         <p>Landrup Dans</p>
         <address className="text-center">
-          Pulsen 8 . 4000 Roskilde <br />
+          Pulsen 8 . 4000 Roskilde
+          <br />
           Tlf. 3540 4550
         </address>
       </section>

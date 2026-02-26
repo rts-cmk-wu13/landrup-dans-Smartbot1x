@@ -42,7 +42,9 @@ export default function LoginForm() {
         />
         {state.errors?.password && <p>{state.errors.password}</p>}
       </div>
-      {state.errors?.form && <p>{state.errors.form}</p>}
+      {state.errors?.form && (
+        <p className="text-secondary">{state.errors.form}</p>
+      )}
       <LoginButton disabled={isPending} type="submit">
         {isPending ? "Logger ind..." : "Log ind"}
       </LoginButton>

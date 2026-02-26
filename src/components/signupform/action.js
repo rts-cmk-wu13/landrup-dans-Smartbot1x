@@ -49,8 +49,8 @@ export async function signupUser(prevState, formData) {
 
     const data = await response.json();
 
-    cookieStore.set("accessToken", data.token);
-    cookieStore.set("username", data.username);
+    cookieStore.set("Landrup-accessToken", data.token);
+    cookieStore.set("userID", data.userId);
 
     // Redirect to login page after signup
     redirect("/logind");

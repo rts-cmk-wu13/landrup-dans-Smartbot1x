@@ -16,9 +16,9 @@ export default function ActivitiesClient({ activities = [] }) {
     }
   };
 
-  const q = query.trim().toLowerCase();
+  const search = query.trim().toLowerCase();
   const filteredActivities =
-    q.length === 0
+    search.length === 0
       ? activities
       : activities.filter((activity) => {
           const name = activity.name?.toLowerCase() ?? "";
@@ -26,7 +26,9 @@ export default function ActivitiesClient({ activities = [] }) {
           const weekday = activity.weekday?.toLowerCase() ?? "";
 
           return (
-            name.includes(q) || description.includes(q) || weekday.includes(q)
+            name.includes(search) ||
+            description.includes(search) ||
+            weekday.includes(search)
           );
         });
 
@@ -47,7 +49,7 @@ export default function ActivitiesClient({ activities = [] }) {
         {isSearchOpen && (
           <div className="mt-4 bg-[#355b72] px-4 py-2 flex items-center rounded-[12px_12px_0_12px] w-80 h-12 ">
             <input
-              type="search"
+              type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               autoFocus

@@ -45,9 +45,12 @@ export async function loginUser(prevState, formData) {
     const data = await response.json()
     console.log(data)
 
-    cookieStore.set("accessToken", data.token)
-    cookieStore.set("username", data.username)
-    console.log(cookieStore.get("accessToken"))
+    cookieStore.set("Landrup-accessToken", data.token, { maxAge: 60 * 60 * 24 * 7 })
+    cookieStore.set("userId", data.userId)
+    console.log(cookieStore.get("Landrup-accessToken"))
+
+    /*  cookieStore.set("Landrup-accessToken"/* , data.token, { maxAge: 60 * 60 * 24 * 7 } )*/
+
 
 
 

@@ -138,7 +138,7 @@ export async function createActivity(activityData) {
 export async function createActivityWithFormData(formData) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("accessToken")?.value;
+        const token = cookieStore.get("Landrup-accessToken")?.value;
         if (!token) {
             return { success: false, error: "Ikke logget ind." };
         }
@@ -246,7 +246,7 @@ export async function deleteActivity(id) {
 export async function signUpForActivity(activityId, userId) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("accessToken")?.value;
+        const token = cookieStore.get("Landrup-accessToken")?.value;
 
         if (!token) {
             return {
@@ -295,7 +295,10 @@ function decodeJwtPayload(token) {
         if (!payloadBase64) return null;
         const payloadJson = Buffer.from(payloadBase64, "base64").toString("utf8");
         return JSON.parse(payloadJson);
-    } catch {
+
+
+    } catch (error) {
+        console.log("decodeJwtPayload error:", error);
         return null;
     }
 }
@@ -307,7 +310,7 @@ function decodeJwtPayload(token) {
 export async function getCurrentUser() {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("accessToken")?.value;
+        const token = cookieStore.get("Landrup-accessToken")?.value;
         if (!token) return null;
 
         const payload = decodeJwtPayload(token);

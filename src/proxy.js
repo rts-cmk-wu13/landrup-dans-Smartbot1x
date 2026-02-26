@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 // This function can be marked `async` if using `await` inside
 export function proxy(request) {
-    if (!request.cookies.has("accessToken"))
+    if (!request.cookies.has("Landrup-accessToken"))
         return NextResponse.redirect(new URL('/unauthorized', request.url))
 }
 
